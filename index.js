@@ -4,16 +4,8 @@
 //    return new Date(year, month, 0).getDate();
 //   };
 
-// const res = fetch('https://rest.dealink.co.kr/auction/group/2?page=0&size=3&sort=createdDate,desc',{
-// 	method:'GET'
-// })
-// .then(response=>response.json())
-// .then(result=>console.log(result[0].closingTime))
-// .catch(error=>Error(error))
-
-
-
-const res = fetch('https://rest.dealink.co.kr/auction/group/2?page=0&size=3&sort=createdDate,desc',{
+const res = setInterval(
+	async function getInfor(){ await (fetch('https://rest.dealink.co.kr/auction/group/2?page=0&size=3&sort=createdDate,desc',{
 	method:'GET'
 })
 .then(response=>response.json())
@@ -30,7 +22,7 @@ const res = fetch('https://rest.dealink.co.kr/auction/group/2?page=0&size=3&sort
 		`;
 	}
 })
-.catch(error=>Error(error));
+.catch(error=>Error(error)))},1000);
 
 
 function getDistance(time1){
@@ -52,3 +44,4 @@ function timer (distance){
 	${minutes < 10 ? `0${minutes}` : minutes}:
 	${seconds < 10 ? `0${seconds}` : seconds}남음`;
 }   ;
+

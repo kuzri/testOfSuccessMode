@@ -1,15 +1,5 @@
 'use strict';
 
-// var getDaysInMonth = function(month,year) {
-//    return new Date(year, month, 0).getDate();
-//   };
-
-// const res = fetch('https://rest.dealink.co.kr/auction/group/2?page=0&size=3&sort=createdDate,desc',{
-// 	method:'GET'
-// })
-// .then(response=>response.json())
-// .then(result=>console.log(result[0].closingTime))
-// .catch(error=>Error(error))
 
 // let handling;
 
@@ -24,7 +14,15 @@ const res = fetch('https://rest.dealink.co.kr/auction/group/2?page=0&size=3&sort
 .then(response=>response.json())
 .then(function(result){
 	for(const goodsId in result){
-		document.querySelector('.div' + goodsId).innerHTML = timer(getDistance(result[goodsId]));
+		document.querySelector('.div' + goodsId).innerHTML = 
+		timer(getDistance(result[goodsId]))+
+		`<div>
+			<img src="${result[goodsId].imagePath}" width="200px" height="200px"/><br/>
+			<h3>${result[goodsId].productName}</h3>
+			<span>${result[goodsId].description}</span>
+			<br/><br/><br/><br/>
+		</div>
+		`;
 	}
 })
 .catch(error=>Error(error));
